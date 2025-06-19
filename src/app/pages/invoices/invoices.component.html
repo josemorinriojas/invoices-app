@@ -1,23 +1,29 @@
-<div class="invoices-container">
-  <h2>Consulta de Facturas</h2>
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Consulta de Facturas</h2>
 
-  <form (ngSubmit)="buscar()">
-    <label for="inicio">Desde:</label>
-    <input id="inicio" type="date" [(ngModel)]="fechaInicio" name="fechaInicio" required />
+  <form (ngSubmit)="buscar()" class="row g-3 align-items-end mb-4">
+    <div class="col-md-4">
+      <label for="inicio" class="form-label">Desde:</label>
+      <input id="inicio" type="date" [(ngModel)]="fechaInicio" name="fechaInicio" class="form-control" required />
+    </div>
 
-    <label for="fin">Hasta:</label>
-    <input id="fin" type="date" [(ngModel)]="fechaFin" name="fechaFin" required />
+    <div class="col-md-4">
+      <label for="fin" class="form-label">Hasta:</label>
+      <input id="fin" type="date" [(ngModel)]="fechaFin" name="fechaFin" class="form-control" required />
+    </div>
 
-    <button type="submit">Buscar</button>
+    <div class="col-md-4 d-grid">
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
   </form>
 
-  <div *ngIf="resultado.length > 0">
-    <h3>Resultados</h3>
-    <table border="1">
-      <thead>
+  <div *ngIf="resultado.length > 0" class="table-responsive">
+    <h3 class="mb-3">Resultados</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
         <tr>
-          <th>Numero de factura</th>
-          <th>Fecha de factura</th>
+          <th>Número de Factura</th>
+          <th>Fecha de Factura</th>
           <th>Total</th>
           <th>Estado</th>
         </tr>
