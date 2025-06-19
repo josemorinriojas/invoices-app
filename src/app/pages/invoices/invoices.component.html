@@ -1,0 +1,35 @@
+<div class="invoices-container">
+  <h2>Consulta de Facturas</h2>
+
+  <form (ngSubmit)="buscar()">
+    <label for="inicio">Desde:</label>
+    <input id="inicio" type="date" [(ngModel)]="fechaInicio" name="fechaInicio" required />
+
+    <label for="fin">Hasta:</label>
+    <input id="fin" type="date" [(ngModel)]="fechaFin" name="fechaFin" required />
+
+    <button type="submit">Buscar</button>
+  </form>
+
+  <div *ngIf="resultado.length > 0">
+    <h3>Resultados</h3>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Numero de factura</th>
+          <th>Fecha de factura</th>
+          <th>Total</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of resultado">
+          <td>{{ item.invoice_number }}</td>
+          <td>{{ item.invoice_date | date: 'short' }}</td>
+          <td>${{ item.total }}</td>
+          <td>{{ item.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
