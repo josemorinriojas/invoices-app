@@ -29,6 +29,7 @@ export class InvoicesComponent {
   p: number = 1;
   itemsPerPage: number = 10;
   totalPages: number = 0;
+  isLoading = false;
 
   constructor(private http: HttpClient) {}
 
@@ -42,13 +43,18 @@ export class InvoicesComponent {
       .set('page', this.p.toString())
       .set('per_page', this.itemsPerPage.toString());
 
+    this.isLoading = true;
     this.http.get<ApiResponse>(`${environment.apiUrl}/invoices`, { params })
       .subscribe({
         next: (response) => {
           this.resultado = response.data;
           this.totalPages = response.meta.total_pages;
+          this.isLoading = false;
         },
-        error: (err) => console.error(err)
+        error: (err) => {
+          console.error(err);
+          this.isLoading = false;
+        }
       });
   }
 
