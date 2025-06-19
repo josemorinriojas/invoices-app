@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { environment } from '../../../environments/environment';
 
 interface ApiResponse {
   data: any[];
@@ -41,7 +42,7 @@ export class InvoicesComponent {
       .set('page', this.p.toString())
       .set('per_page', this.itemsPerPage.toString());
 
-    this.http.get<ApiResponse>('http://localhost:3000/api/v1/invoices', { params })
+    this.http.get<ApiResponse>(`${environment.apiUrl}/invoices`, { params })
       .subscribe({
         next: (response) => {
           this.resultado = response.data;
